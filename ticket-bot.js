@@ -9,9 +9,9 @@ const config = {
   password: process.env.PASSWORD,
   ticketUrl: process.env.TICKET_URL,
   maxAttempts: process.env.MAX_ATTEMPTS,
-  waitIntervalOne: process.env.WAIT_INTERVAL_ONE,
-  waitIntervalTwo: process.env.WAIT_INTERVAL_TWO,
-  waitIntervalThree: process.env.WAIT_INTERVAL_THREE,
+  waitIntervalOne: process.env.WAIT_INTERVAL_ONE || 1000,
+  waitIntervalTwo: process.env.WAIT_INTERVAL_TWO || 500,
+  waitIntervalThree: process.env.WAIT_INTERVAL_THREE || 400,
 };
 
 // Validate required configuration
@@ -119,10 +119,9 @@ async function run() {
       try {
         // Wait for potential elements to load
         await page.evaluate(
-          () =>
-            new Promise((resolve) =>
-              setTimeout(resolve, config.waitIntervalOne)
-            )
+          (waitInterval) =>
+            new Promise((resolve) => setTimeout(resolve, waitInterval)),
+          config.waitIntervalOne
         );
 
         // Check if the ticket element exists
@@ -158,16 +157,18 @@ async function run() {
     // After clicking on ticket element, wait for ticket details to load
     console.log("Waiting for ticket details to load...");
     await page.evaluate(
-      () =>
-        new Promise((resolve) => setTimeout(resolve, config.waitIntervalTwo))
+      (waitInterval) =>
+        new Promise((resolve) => setTimeout(resolve, waitInterval)),
+      config.waitIntervalTwo
     );
 
     // Search for button with "Buscar asiento disponible" text
     console.log("Searching for 'Buscar asiento disponible' button...");
     await clickButtonWithText(page, "Buscar asiento disponible");
     await page.evaluate(
-      () =>
-        new Promise((resolve) => setTimeout(resolve, config.waitIntervalThree))
+      (waitInterval) =>
+        new Promise((resolve) => setTimeout(resolve, waitInterval)),
+      config.waitIntervalThree
     );
     await clickButtonWithText(page, "Agregar platea");
   } catch (error) {
