@@ -120,7 +120,10 @@ async function run() {
         );
 
         // Check if the ticket element exists
-        const ticketElement = await page.$("g[data-section]");
+        // const ticketElement = await page.$("g[data-section]");
+        const ticketElement = await page.$(
+          "g[data-section='I'], g[data-section='J'], g[data-section='F'], g[data-section='G'], g[data-section='H'], g[data-section='K']"
+        );
 
         if (ticketElement) {
           console.log("Ticket element found! Attempting to click...");
