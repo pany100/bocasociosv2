@@ -9,6 +9,9 @@ const config = {
   password: process.env.PASSWORD,
   ticketUrl: process.env.TICKET_URL,
   maxAttempts: process.env.MAX_ATTEMPTS,
+  waitIntervalOne: process.env.WAIT_INTERVAL_ONE,
+  waitIntervalTwo: process.env.WAIT_INTERVAL_TWO,
+  waitIntervalThree: process.env.WAIT_INTERVAL_THREE,
 };
 
 // Validate required configuration
@@ -116,7 +119,10 @@ async function run() {
       try {
         // Wait for potential elements to load
         await page.evaluate(
-          () => new Promise((resolve) => setTimeout(resolve, 1000))
+          () =>
+            new Promise((resolve) =>
+              setTimeout(resolve, config.waitIntervalOne)
+            )
         );
 
         // Check if the ticket element exists
@@ -152,14 +158,16 @@ async function run() {
     // After clicking on ticket element, wait for ticket details to load
     console.log("Waiting for ticket details to load...");
     await page.evaluate(
-      () => new Promise((resolve) => setTimeout(resolve, 1000))
+      () =>
+        new Promise((resolve) => setTimeout(resolve, config.waitIntervalTwo))
     );
 
     // Search for button with "Buscar asiento disponible" text
     console.log("Searching for 'Buscar asiento disponible' button...");
     await clickButtonWithText(page, "Buscar asiento disponible");
     await page.evaluate(
-      () => new Promise((resolve) => setTimeout(resolve, 500))
+      () =>
+        new Promise((resolve) => setTimeout(resolve, config.waitIntervalThree))
     );
     await clickButtonWithText(page, "Agregar platea");
   } catch (error) {
