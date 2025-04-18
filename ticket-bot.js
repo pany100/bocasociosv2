@@ -5,9 +5,10 @@ const { checkButtonWithTextExists, clickButtonWithText } = require("./utils");
 // Configuration - load from environment variables
 const config = {
   loginUrl: process.env.LOGIN_URL,
-  username: process.env.USERNAME,
+  username: process.env.CUSTOM_USERNAME,
   password: process.env.PASSWORD,
   ticketUrl: process.env.TICKET_URL,
+  maxAttempts: process.env.MAX_ATTEMPTS,
 };
 
 // Validate required configuration
@@ -109,7 +110,7 @@ async function run() {
     console.log("Checking for ticket availability...");
     let ticketFound = false;
     let attempts = 0;
-    const maxAttempts = 100;
+    const maxAttempts = config.maxAttempts;
 
     while (!ticketFound && attempts < maxAttempts) {
       try {
