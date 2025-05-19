@@ -121,19 +121,9 @@ async function run() {
       try {
         await clickButtonWithText(page, "Buscar asiento disponible", 50);
 
-        const result = await clickButtonWithText(page, "Agregar platea");
+        await clickButtonWithText(page, "Agregar platea");
 
-        if (result) {
-          console.log("Ticket element found! Attempting to click...");
-        } else {
-          console.log(
-            `Ticket not found. Refreshing page (attempt ${
-              attempts + 1
-            }/${maxAttempts})...`
-          );
-          await page.reload({ waitUntil: "networkidle2" });
-          attempts++;
-        }
+        console.log("Ticket element found!!");
       } catch (err) {
         console.log(`Error during attempt ${attempts + 1}: ${err.message}`);
         attempts++;
