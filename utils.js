@@ -48,11 +48,7 @@ async function clickButtonWithText(page, buttonText, timeout = 1000) {
           while (element && element.tagName !== "BUTTON") {
             element = element.parentElement;
           }
-          if (
-            element &&
-            !element.hasAttribute("disabled") &&
-            element.offsetParent !== null // Verifica que esté visible
-          ) {
+          if (element && !element.hasAttribute("disabled")) {
             return element;
           }
         }
@@ -78,7 +74,89 @@ async function clickButtonWithText(page, buttonText, timeout = 1000) {
     );
   }
 }
+
+/**
+ * Hace clic en un botón que contiene un <p> con cierto texto.
+ * Lanza excepción si el botón no existe o está deshabilitado.
+ * @param {puppeteer.Page} page
+ * @param {string} text - Texto exacto dentro del <p> (ej. "Buscar asiento disponible")
+ * @param {number} timeout - Tiempo máximo para esperar el botón (default: 500ms)
+ */
+async function clickButtonByParagraphTextStrict(page, text, timeout = 200) {
+  try {
+    // Construí el XPath dinámicamente con el texto
+    const xpath = `xpath///p[normalize-space(.)="${text}"]/ancestor::button`;
+
+    // Espera a que aparezca el botón
+    const button = await page.waitForSelector(xpath, { timeout });
+    if (text === "Agregar platea") {
+      console.log(button);
+    }
+
+    if (!button) {
+      throw new Error(`❌ Button with text "${text}" not found`);
+    }
+    const isDisabled = await page.evaluate(
+      (btn) => btn.hasAttribute("disabled"),
+      button
+    );
+    if (isDisabled) {
+      throw new Error(`❌ Button with text "${text}" is disabled`);
+    }
+
+    try {
+      await page.evaluate((btn) => btn.click(), button);
+    } catch (err) {
+      if (err.message.includes("Execution context was destroyed")) {
+        throw new Error("❌ Click falló porque el DOM cambió antes de tiempo");
+      }
+      throw err;
+    }
+
+    console.log(`✅ Clicked button with text: "${text}"`);
+  } catch (err) {
+    throw new Error(`💥 Failed to click "${text}": ${err.message}`);
+  }
+}
+
+async function checkNotAvailableModal(page) {
+  try {
+    // Buscar el mensaje de error usando page.evaluate en lugar de XPath
+    const errorFound = await page.evaluate(
+      () => {
+        const paragraphs = document.querySelectorAll("p");
+        const errorText =
+          "Lo sentimos. Te sugerimos intentarlo nuevamente en otro asiento o sector que esté disponible.";
+
+        for (const p of paragraphs) {
+          if (p.textContent.trim() === errorText) {
+            return true;
+          }
+        }
+        return false;
+      },
+      { timeout: 3500 }
+    );
+
+    if (errorFound) {
+      console.log("🚫 El mensaje de error apareció, refrescando...");
+      throw new Error("❌ Ticket not available");
+    } else {
+      console.log("✅ No apareció el mensaje, seguimos");
+    }
+  } catch (error) {
+    // Si la excepción fue lanzada por nosotros, propagarla
+    if (error.message === "❌ Ticket not available") {
+      throw error;
+    }
+    // Si fue otro tipo de error (timeout, etc), asumimos que no apareció el mensaje
+    console.log("✅ No apareció el mensaje, seguimos");
+  }
+}
+
 module.exports = {
   checkButtonWithTextExists,
   clickButtonWithText,
+  clickButtonByParagraphTextStrict,
+  checkNotAvailableModal,
 };

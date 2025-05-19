@@ -1,6 +1,9 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
-const { clickButtonWithText } = require("./utils");
+const {
+  clickButtonByParagraphTextStrict,
+  checkNotAvailableModal,
+} = require("./utils");
 const sectionUrl = process.argv[2] || process.env.SECTION_URL;
 
 // Configuration - load from environment variables
@@ -119,21 +122,25 @@ async function run() {
 
     while (!ticketFound && attempts < maxAttempts) {
       try {
-        await clickButtonWithText(page, "Buscar asiento disponible", 50);
+        console.log(`Attempt ${attempts + 1}...`);
 
-        await clickButtonWithText(page, "Agregar platea");
+        await clickButtonByParagraphTextStrict(
+          page,
+          "Buscar asiento disponible",
+          2500
+        );
 
-        console.log("Ticket element found!!");
+        await clickButtonByParagraphTextStrict(page, "Agregar platea", 3000);
+
+        await checkNotAvailableModal(page);
+        ticketFound = true;
+        console.log("🎉 Ticket seleccionado!");
       } catch (err) {
-        console.log(`Error during attempt ${attempts + 1}: ${err.message}`);
+        console.log(`🔁 Error during attempt ${attempts + 1}: ${err.message}`);
         attempts++;
-        console.log("Refreshing page...");
-        await page.reload({ waitUntil: "networkidle2" });
+        await page.reload({ waitUntil: "domcontentloaded" });
       }
     }
-
-    // Search for button with "Buscar asiento disponible" text
-    console.log("Searching for 'Buscar asiento disponible' button...");
   } catch (error) {
     console.error("An error occurred:", error);
   } finally {
