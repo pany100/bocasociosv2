@@ -119,7 +119,7 @@ async function run() {
 
     while (!ticketFound && attempts < maxAttempts) {
       try {
-        await clickButtonWithText(page, "Buscar asiento disponible", 200);
+        await clickButtonWithText(page, "Buscar asiento disponible", 50);
 
         await clickButtonWithText(page, "Agregar platea");
 
