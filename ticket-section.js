@@ -121,7 +121,7 @@ async function run() {
       try {
         await clickButtonWithText(page, "Buscar asiento disponible", 50);
 
-        await clickButtonWithText(page, "Agregar platea");
+        const result = await clickButtonWithText(page, "Agregar platea");
 
         if (result) {
           console.log("Ticket element found! Attempting to click...");
