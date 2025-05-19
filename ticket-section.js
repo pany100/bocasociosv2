@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
 const { clickButtonWithText } = require("./utils");
+const sectionUrl = process.argv[2] || process.env.SECTION_URL;
 
 // Configuration - load from environment variables
 const config = {
@@ -8,7 +9,7 @@ const config = {
   username: process.env.CUSTOM_USERNAME,
   password: process.env.PASSWORD,
   ticketUrl: process.env.TICKET_URL,
-  sectionUrl: process.env.SECTION_URL,
+  sectionUrl,
   maxAttempts: process.env.MAX_ATTEMPTS,
   waitIntervalOne: process.env.WAIT_INTERVAL_ONE || 1000,
   waitIntervalTwo: process.env.WAIT_INTERVAL_TWO || 500,
