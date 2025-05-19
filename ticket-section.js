@@ -12,7 +12,7 @@ const config = {
   maxAttempts: process.env.MAX_ATTEMPTS,
   waitIntervalOne: process.env.WAIT_INTERVAL_ONE || 1000,
   waitIntervalTwo: process.env.WAIT_INTERVAL_TWO || 500,
-  waitIntervalThree: process.env.WAIT_INTERVAL_THREE || 400,
+  waitIntervalThree: process.env.WAIT_INTERVAL_THREE || 1000,
 };
 
 // Validate required configuration
@@ -119,12 +119,8 @@ async function run() {
     while (!ticketFound && attempts < maxAttempts) {
       try {
         await clickButtonWithText(page, "Buscar asiento disponible");
-        await page.evaluate(
-          (waitInterval) =>
-            new Promise((resolve) => setTimeout(resolve, waitInterval)),
-          config.waitIntervalThree
-        );
-        const result = await clickButtonWithText(page, "Agregar platea");
+
+        await clickButtonWithText(page, "Agregar platea");
 
         if (result) {
           console.log("Ticket element found! Attempting to click...");

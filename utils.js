@@ -34,31 +34,50 @@ async function checkButtonWithTextExists(page, buttonText) {
  * @param {string} buttonText - The text to search for
  * @returns {Promise<boolean>} - True if button was clicked, false otherwise
  */
-async function clickButtonWithText(page, buttonText) {
-  return await page.evaluateHandle((text) => {
-    const paragraphs = Array.from(document.querySelectorAll("p")).filter(
-      (p) => p.textContent.trim() === text
+async function clickButtonWithText(page, buttonText, timeout = 1000) {
+  try {
+    // Espera hasta que el botón con el texto deseado esté presente y habilitado
+    const buttonHandle = await page.waitForFunction(
+      (text) => {
+        const paragraphs = Array.from(document.querySelectorAll("p")).filter(
+          (p) => p.textContent.trim() === text
+        );
+
+        if (paragraphs.length > 0) {
+          let element = paragraphs[0];
+          while (element && element.tagName !== "BUTTON") {
+            element = element.parentElement;
+          }
+          if (
+            element &&
+            !element.hasAttribute("disabled") &&
+            element.offsetParent !== null // Verifica que esté visible
+          ) {
+            return element;
+          }
+        }
+        console.log("returning null");
+        return null;
+      },
+      { timeout },
+      buttonText
     );
 
-    if (paragraphs.length > 0) {
-      let element = paragraphs[0];
-      while (element && element.tagName !== "BUTTON") {
-        element = element.parentElement;
-      }
-
-      if (text === "Buscar asiento disponible" && element.attributes.disabled) {
-        throw new Error(`Button is disabled: ${text}`);
-      }
-
-      if (element && !element.attributes.disabled) {
-        element.click();
-        return true;
-      }
+    const button = await buttonHandle.asElement();
+    console.log(button);
+    if (!button) {
+      throw new Error(`Button with text "${buttonText}" not found or disabled`);
     }
-    throw new Error(`Button not found: ${text}`);
-  }, buttonText);
-}
 
+    await button.click();
+    console.log(`✅ Clicked button with text: ${buttonText}`);
+    return true;
+  } catch (err) {
+    throw new Error(
+      `❌ Failed to click button with text "${buttonText}": ${err.message}`
+    );
+  }
+}
 module.exports = {
   checkButtonWithTextExists,
   clickButtonWithText,
