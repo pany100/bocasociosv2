@@ -46,12 +46,16 @@ async function clickButtonWithText(page, buttonText) {
         element = element.parentElement;
       }
 
-      if (element) {
+      if (text === "Buscar asiento disponible" && element.attributes.disabled) {
+        throw new Error(`Button is disabled: ${text}`);
+      }
+
+      if (element && !element.attributes.disabled) {
         element.click();
         return true;
       }
     }
-    return false;
+    throw new Error(`Button not found: ${text}`);
   }, buttonText);
 }
 
