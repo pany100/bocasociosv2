@@ -1,6 +1,7 @@
 import { checkAvailability } from "./check-availability.js";
 import { checkSeatAvailability } from "./check-seat-availability.js";
 import { login } from "./login.js";
+import { playLoudAlarm } from "./notifier.js";
 import { reserve } from "./reserve.js";
 
 async function main() {
@@ -16,8 +17,8 @@ async function main() {
 
   console.log("✓ Login exitoso");
   const token = loginResult.token;
-
-  const nids = await checkAvailability(token, 0.5);
+  playLoudAlarm();
+  const nids = await checkAvailability(token, 0.5); //500ms
 
   if (nids && nids.length > 0) {
     console.log("NIDs disponibles:", nids);
