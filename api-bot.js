@@ -1,6 +1,7 @@
 import { checkAvailability } from "./check-availability.js";
 import { checkSeatAvailability } from "./check-seat-availability.js";
 import { login } from "./login.js";
+import { playLoudAlarm } from "./notifier.js";
 import { reserve } from "./reserve.js";
 
 async function main() {
@@ -33,6 +34,7 @@ async function main() {
 
       if (reservaResult.success) {
         console.log("\n🎉 ¡RESERVA COMPLETADA CON ÉXITO!");
+        await playLoudAlarm();
         return; // Detener después de reservar
       } else {
         console.log("Reserva falló, intentando con siguiente asiento...");
