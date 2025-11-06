@@ -17,7 +17,7 @@ async function main() {
 
   console.log("✓ Login exitoso");
   const token = loginResult.token;
-  const nids = await checkAvailability(token, 0.5); //500ms
+  const nids = await checkAvailability(token, 0);
 
   if (nids && nids.length > 0) {
     console.log("NIDs disponibles:", nids);
