@@ -16,7 +16,7 @@ function playLoudAlarm() {
         console.log(
           `⏰ ${new Date().toLocaleTimeString()} - ¡PAGO! ¡PAGO! ¡PAGO!`
         );
-      }, 3000);
+      }, 500);
 
       setTimeout(() => {
         clearInterval(interval);
@@ -29,7 +29,7 @@ function playLoudAlarm() {
         console.log(
           `⏰ ${new Date().toLocaleTimeString()} - ¡PAGO! ¡PAGO! ¡PAGO!`
         );
-      }, 2000);
+      }, 500);
 
       setTimeout(() => {
         clearInterval(interval);
@@ -44,7 +44,7 @@ function playLoudAlarm() {
         console.log(
           `⏰ ${new Date().toLocaleTimeString()} - ¡PAGO! ¡PAGO! ¡PAGO!`
         );
-      }, 3000);
+      }, 500);
 
       setTimeout(() => {
         clearInterval(interval);

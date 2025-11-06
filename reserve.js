@@ -1,7 +1,9 @@
 // reserve.js
 import axios from "axios";
 import dotenv from "dotenv";
+import { readFile } from "fs/promises";
 import https from "https";
+import { USE_MOCKS } from "./config.js";
 import { validate } from "./validate.js";
 
 dotenv.config();
@@ -11,6 +13,11 @@ const client = axios.create({
     rejectUnauthorized: false,
   }),
 });
+
+async function getMockData() {
+  const mockData = await readFile("./reserve.mock.json", "utf-8");
+  return JSON.parse(mockData);
+}
 
 const headers = {
   accept: "application/json, text/plain, */*",
@@ -36,20 +43,25 @@ export async function reserve(seatNid, token) {
     const cookies = await validate();
 
     const url = `https://bocasocios-gw.bocajuniors.com.ar/event/seat/reserve/${seatNid}`;
-
-    const response = await client.post(
-      url,
-      {
-        eventoUbicacionNid: seatNid,
-      },
-      {
-        headers: {
-          ...headers,
-          Authorization: `Bearer ${token}`,
-          cookie: cookies ? cookies.join("; ") : "",
+    let response = {};
+    if (USE_MOCKS) {
+      const mockData = await getMockData();
+      response.data = mockData;
+    } else {
+      response = await client.post(
+        url,
+        {
+          eventoUbicacionNid: seatNid,
         },
-      }
-    );
+        {
+          headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`,
+            cookie: cookies ? cookies.join("; ") : "",
+          },
+        }
+      );
+    }
 
     console.log(`✅ ¡RESERVA EXITOSA!`);
     console.log(`Respuesta:`, response.data);

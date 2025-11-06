@@ -1,0 +1,18 @@
+{
+  "ubicaciones": [
+    {
+      "nid": 6335320,
+      "fila": 5,
+      "columna": 84
+    }
+  ],
+  "nombreSeccion": "H",
+  "evento": {
+    "nid": 804,
+    "nombre": "BOCA JRS vs RIVER PLATE",
+    "estadio": "Estadio Alberto J. Armando",
+    "torneo": "Torneo Clausura 2025",
+    "fecha": 1762716600000,
+    "cantEntradasInvitado": 1
+  }
+}

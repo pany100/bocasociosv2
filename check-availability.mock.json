@@ -1,0 +1,511 @@
+{
+  "secciones": [
+    {
+      "nid": 75806,
+      "codigo": "I",
+      "nombre": "Seccion I",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75808,
+      "codigo": "J",
+      "nombre": "Seccion J",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75809,
+      "codigo": "F",
+      "nombre": "Seccion F",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75810,
+      "codigo": "G",
+      "nombre": "Seccion G",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75811,
+      "codigo": "H",
+      "nombre": "Seccion H",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75812,
+      "codigo": "LIC",
+      "nombre": "Seccion LIC",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75887,
+      "codigo": "TS2",
+      "nombre": "Terraza Sur 2",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75888,
+      "codigo": "TS3",
+      "nombre": "Terraza Sur 3",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75889,
+      "codigo": "TS4",
+      "nombre": "Terraza Sur 4",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75890,
+      "codigo": "TS5",
+      "nombre": "Terraza Sur 5",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75899,
+      "codigo": "ACREDITA",
+      "nombre": "Puerta 3 Y 18",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75881,
+      "codigo": "TN1",
+      "nombre": "Terraza Norte 1",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75882,
+      "codigo": "TN2",
+      "nombre": "Terraza Norte 2",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75883,
+      "codigo": "TN3",
+      "nombre": "Terraza Norte 3",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75884,
+      "codigo": "TN4",
+      "nombre": "Terraza Norte 4",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75885,
+      "codigo": "TN5",
+      "nombre": "Terraza Norte 5",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75886,
+      "codigo": "TS1",
+      "nombre": "Terraza Sur 1",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75867,
+      "codigo": "MC",
+      "nombre": "Seccion MC",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75868,
+      "codigo": "MD",
+      "nombre": "Seccion MD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75869,
+      "codigo": "MPV1",
+      "nombre": "Palco 39",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75870,
+      "codigo": "MPV2",
+      "nombre": "Palco 40",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75874,
+      "codigo": "K",
+      "nombre": "Seccion K",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75880,
+      "codigo": "PREND",
+      "nombre": "Pupitres Seccion D",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75859,
+      "codigo": "PRS3",
+      "nombre": "Preferencial Sur 3",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75862,
+      "codigo": "MI",
+      "nombre": "Seccion MI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75863,
+      "codigo": "MPA",
+      "nombre": "Palco 38",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75864,
+      "codigo": "MPO",
+      "nombre": "Palco 37",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75865,
+      "codigo": "MPV",
+      "nombre": "Palco 36",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75866,
+      "codigo": "M20",
+      "nombre": "Palco M 35",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75853,
+      "codigo": "PLCOF",
+      "nombre": "Palco Oficial",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75854,
+      "codigo": "PRN1",
+      "nombre": "Preferencial Norte 1",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75855,
+      "codigo": "PRN2",
+      "nombre": "Preferencial Norte 2",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75856,
+      "codigo": "PRN3",
+      "nombre": "Preferencial Norte 3",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75857,
+      "codigo": "PRS1",
+      "nombre": "Preferencial Sur 1",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75858,
+      "codigo": "PRS2",
+      "nombre": "Preferencial Sur 2",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75846,
+      "codigo": "SDI",
+      "nombre": "Seccion DI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75847,
+      "codigo": "PMPOA",
+      "nombre": "Palco Oficial A",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75848,
+      "codigo": "PMPOB",
+      "nombre": "Palco Oficial B",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75849,
+      "codigo": "PMPCOA",
+      "nombre": "Palcos A",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75850,
+      "codigo": "PMPCOB",
+      "nombre": "Palcos B",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75852,
+      "codigo": "SMV",
+      "nombre": "Sector M",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75840,
+      "codigo": "SBC",
+      "nombre": "Seccion BC",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75841,
+      "codigo": "SBD",
+      "nombre": "Seccion BD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75842,
+      "codigo": "SBI",
+      "nombre": "Seccion BI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75843,
+      "codigo": "SCD",
+      "nombre": "Seccion CD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75844,
+      "codigo": "SCI",
+      "nombre": "Seccion CI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75845,
+      "codigo": "SDD",
+      "nombre": "Seccion DD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75834,
+      "codigo": "VCS",
+      "nombre": "Palco Vip Campo Sur",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75835,
+      "codigo": "SPC",
+      "nombre": "Palco C",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75836,
+      "codigo": "SPD",
+      "nombre": "Palco D",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75837,
+      "codigo": "SAC",
+      "nombre": "Seccion AC",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75838,
+      "codigo": "SAD",
+      "nombre": "Seccion AD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75839,
+      "codigo": "SAI",
+      "nombre": "Seccion AI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75828,
+      "codigo": "PPN3",
+      "nombre": "Palcos Piso 3 Norte",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75829,
+      "codigo": "PPS1",
+      "nombre": "Palcos Piso 1 Sur",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75830,
+      "codigo": "PPS2",
+      "nombre": "Palcos Piso 2 Sur",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75831,
+      "codigo": "PPS3",
+      "nombre": "Palcos Piso 3 Sur",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75832,
+      "codigo": "PCJVP",
+      "nombre": "Pco. Presidencial Vip Campo",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75833,
+      "codigo": "VCN",
+      "nombre": "Palco Vip Campo Norte",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75819,
+      "codigo": "LD",
+      "nombre": "Seccion LD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75823,
+      "codigo": "PLCPREF",
+      "nombre": "Palco Preferencial",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75824,
+      "codigo": "PLCVN",
+      "nombre": "Palcos Vip Norte",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75825,
+      "codigo": "PLCVS",
+      "nombre": "Palcos Vip Sur",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75826,
+      "codigo": "PPN1",
+      "nombre": "Palcos Piso 1 Norte",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75827,
+      "codigo": "PPN2",
+      "nombre": "Palcos Piso 2 Norte",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75813,
+      "codigo": "LID",
+      "nombre": "Seccion LID",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75814,
+      "codigo": "LII",
+      "nombre": "Seccion LII",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75815,
+      "codigo": "LPC",
+      "nombre": "Seccion LPC",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75816,
+      "codigo": "LPD",
+      "nombre": "Seccion LPD",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75817,
+      "codigo": "LPI",
+      "nombre": "Seccion LPI",
+      "activa": true,
+      "hayDisponibilidad": false
+    },
+    {
+      "nid": 75818,
+      "codigo": "LV",
+      "nombre": "Seccion LV",
+      "activa": true,
+      "hayDisponibilidad": true
+    }
+  ],
+  "evento": {
+    "nid": 804,
+    "tipoNid": 0,
+    "nombre": "BOCA JRS vs RIVER PLATE",
+    "estadio": "Estadio Alberto J. Armando",
+    "torneo": "Torneo Clausura 2025",
+    "fecha": 1762716600000,
+    "cantEntradasInvitado": 1
+  },
+  "beneficiosUsados": false
+}

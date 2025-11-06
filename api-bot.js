@@ -24,7 +24,7 @@ async function main() {
     const primerNid = nids[0];
     const seatNids = await checkSeatAvailability(primerNid, token);
     if (seatNids && seatNids.length > 0) {
-      console.log(`\n🎯 Asientos encontrados en sección ${sectionNid}!`);
+      console.log(`\n🎯 Asientos encontrados en sección ${primerNid}!`);
 
       // 4. Intentar reservar el primer asiento disponible
       const primerAsiento = seatNids[0];

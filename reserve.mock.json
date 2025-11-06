@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "reservaId": "12345-ABCDE",
+  "mensaje": "Reserva realizada exitosamente",
+  "eventoUbicacionNid": 6335320,
+  "tiempoExpiracion": 600
+}

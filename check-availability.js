@@ -1,6 +1,8 @@
 import axios from "axios";
 import dotenv from "dotenv";
+import { readFile } from "fs/promises";
 import https from "https";
+import { USE_MOCKS } from "./config.js";
 import { AVAILABILITY_URL } from "./constants.js";
 import { validate } from "./validate.js";
 
@@ -29,6 +31,11 @@ const headers = {
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
 };
 
+async function getMockData() {
+  const mockData = await readFile("./check-availability.mock.json", "utf-8");
+  return JSON.parse(mockData);
+}
+
 export async function checkAvailability(
   token,
   intervalSeconds = 5,
@@ -39,6 +46,10 @@ export async function checkAvailability(
   console.log(
     `🔍 Iniciando monitoreo de disponibilidad (cada ${intervalSeconds}s)...`
   );
+
+  if (USE_MOCKS) {
+    console.log("🧪 MODO MOCK ACTIVADO");
+  }
 
   while (true) {
     attempts++;
@@ -59,8 +70,14 @@ export async function checkAvailability(
           cookie: cookies ? cookies.join("; ") : "",
         },
       });
-
-      const data = response.data;
+      let data;
+      if (USE_MOCKS) {
+        const mockData = await getMockData();
+        response.data = mockData;
+        data = response.data;
+      } else {
+        data = response.data;
+      }
 
       // Buscar secciones con disponibilidad
       const disponibles = data.secciones.filter((s) => s.hayDisponibilidad);

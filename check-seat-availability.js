@@ -1,7 +1,9 @@
 // check-seat-availability.js
 import axios from "axios";
 import dotenv from "dotenv";
+import { readFile } from "fs/promises";
 import https from "https";
+import { USE_MOCKS } from "./config.js";
 import { validate } from "./validate.js";
 
 dotenv.config();
@@ -29,6 +31,14 @@ const headers = {
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
 };
 
+async function getMockData() {
+  const mockData = await readFile(
+    "./check-seat-availability.mock.json",
+    "utf-8"
+  );
+  return JSON.parse(mockData);
+}
+
 export async function checkSeatAvailability(sectionNid, token) {
   try {
     console.log(`🔍 Consultando asientos para sección NID: ${sectionNid}...`);
@@ -44,7 +54,14 @@ export async function checkSeatAvailability(sectionNid, token) {
       },
     });
 
-    const data = response.data;
+    let data;
+    if (USE_MOCKS) {
+      const mockData = await getMockData();
+      response.data = mockData;
+      data = response.data;
+    } else {
+      data = response.data;
+    }
 
     if (data.ubicaciones && data.ubicaciones.length > 0) {
       // Extraer solo los NIDs de las ubicaciones
