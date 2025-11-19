@@ -1,7 +1,7 @@
 import axios from "axios";
 import https from "https";
 
-import { QUEUEIT_URL } from "./constants.js";
+import { IPV4_CHECK_URL, QUEUEIT_URL } from "./constants.js";
 
 const client = axios.create({
   httpsAgent: new https.Agent({
@@ -12,7 +12,7 @@ const client = axios.create({
 });
 
 const headers = {
-  accept: "application/json, text/plain, */*",
+  accept: "application/json, text/plain, /",
   "accept-encoding": "gzip, deflate, br, zstd",
   "accept-language": "es-419,es;q=0.9",
   referer: "https://bocasocios.bocajuniors.com.ar/",
@@ -57,12 +57,13 @@ export async function validate(initializeFirst = false) {
 
     if (initializeFirst) {
       console.log("🔄 Inicializando Queue-it desde cero...");
-
+      const response = await client.get(IPV4_CHECK_URL);
+      console.log("IPV 4 response");
+      console.log(response.data);
       // 2. Ir a Queue-it inicial
       console.log("2. Accediendo a Queue-it...");
       const queueItUrl =
-        "https://bocajuniors.queue-it.net/?c=bocajuniors&e=e20251018adh&ver=v3-javascript-3.7.10&cver=256&man=Proteccion+Boca+Socios&t=https%3A%2F%2Fbocasocios-gw.bocajuniors.com.ar%2Fqueueit%2Fredirect";
-
+        "https://bocajuniors.queue-it.net/?c=bocajuniors&e=e20251116adh&ver=v3-javascript-3.7.10&cver=260&man=Proteccion+Boca+Socios&t=https%3A%2F%2Fbocasocios-gw.bocajuniors.com.ar%2Fqueueit%2Fredirect";
       const queueResponse = await client.get(queueItUrl, {
         headers: {
           ...headers,
@@ -75,8 +76,10 @@ export async function validate(initializeFirst = false) {
       // 3. Seguir el redirect (302) con el queueittoken
       if (queueResponse.status === 302 && queueResponse.headers.location) {
         console.log("3. Siguiendo redirect con queueittoken...");
-        const redirectUrl = queueResponse.headers.location;
-
+        const redirectUrl =
+          "https://bocajuniors.queue-it.net" + queueResponse.headers.location;
+        console.log(redirectUrl);
+        console.log("redirect 2");
         const redirectResponse = await client.get(redirectUrl, {
           headers: {
             ...headers,
@@ -84,9 +87,28 @@ export async function validate(initializeFirst = false) {
           },
         });
 
+        console.log(redirectResponse.data);
+
         allCookies.push(
           ...extractCookies(redirectResponse.headers["set-cookie"])
         );
+
+        const redirectUrl2 = redirectResponse.headers.location;
+        console.log(redirectUrl2);
+        console.log("redirect 3");
+        const redirectResponse2 = await client.get(redirectUrl2, {
+          headers: {
+            ...headers,
+            cookie: cookiesToString(allCookies),
+          },
+        });
+
+        console.log(redirectResponse.data);
+
+        allCookies.push(
+          ...extractCookies(redirectResponse2.headers["set-cookie"])
+        );
+
         console.log("✓ Cookies de Queue-it obtenidas");
       }
     }
