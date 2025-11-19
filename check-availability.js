@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { readFile } from "fs/promises";
 import https from "https";
 import { USE_MOCKS } from "./config.js";
-import { AVAILABILITY_URL } from "./constants.js";
+import { ALLOWED_SECTIONS, AVAILABILITY_URL } from "./constants.js";
 import { validate } from "./validate.js";
 
 dotenv.config();
@@ -78,9 +78,19 @@ export async function checkAvailability(
       } else {
         data = response.data;
       }
+      // Filtrar solo las secciones permitidas
+      const seccionesFiltradas = data.secciones.filter((s) =>
+        ALLOWED_SECTIONS.includes(s.codigo)
+      );
+
+      console.log(
+        `🔍 Buscando en secciones: ${ALLOWED_SECTIONS.join(", ")} (${
+          seccionesFiltradas.length
+        } secciones)`
+      );
 
       // Buscar secciones con disponibilidad
-      const disponibles = data.secciones.filter((s) => s.hayDisponibilidad);
+      const disponibles = seccionesFiltradas.filter((s) => s.hayDisponibilidad);
 
       if (disponibles.length > 0) {
         console.log(`\n🎉 ¡DISPONIBILIDAD ENCONTRADA!`);
@@ -94,7 +104,7 @@ export async function checkAvailability(
       }
 
       console.log(
-        `❌ Sin disponibilidad (0/${data.secciones.length} secciones)`
+        `❌ Sin disponibilidad (0/${seccionesFiltradas.length} secciones permitidas)`
       );
 
       // Esperar antes del siguiente intento
@@ -134,9 +144,12 @@ export async function checkAvailabilityOnce(token) {
       },
     });
 
-    const disponibles = response.data.secciones.filter(
-      (s) => s.hayDisponibilidad
+    // Filtrar solo las secciones permitidas
+    const seccionesFiltradas = response.data.secciones.filter((s) =>
+      ALLOWED_SECTIONS.includes(s.codigo)
     );
+
+    const disponibles = seccionesFiltradas.filter((s) => s.hayDisponibilidad);
 
     if (disponibles.length > 0) {
       const nids = disponibles.map((s) => s.nid);

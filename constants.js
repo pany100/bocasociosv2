@@ -4,4 +4,13 @@ const IPV4_CHECK_URL = "https://bocasocios.bocajuniors.com.ar/api/ipv4";
 const AVAILABILITY_URL =
   "https://bocasocios-gw.bocajuniors.com.ar/event/811/seat/section/availability";
 
-export { AVAILABILITY_URL, IPV4_CHECK_URL, LOGIN_URL, QUEUEIT_URL };
+// Secciones permitidas para buscar disponibilidad
+const ALLOWED_SECTIONS = ["I", "J", "F", "G", "H", "K"];
+
+export {
+  ALLOWED_SECTIONS,
+  AVAILABILITY_URL,
+  IPV4_CHECK_URL,
+  LOGIN_URL,
+  QUEUEIT_URL,
+};
