@@ -79,15 +79,11 @@ export async function checkAvailability(
         data = response.data;
       }
       // Filtrar solo las secciones permitidas
-      const seccionesFiltradas = data.secciones.filter((s) =>
-        ALLOWED_SECTIONS.includes(s.codigo)
-      );
+      // const seccionesFiltradas = data.secciones.filter((s) =>
+      //   ALLOWED_SECTIONS.includes(s.codigo)
+      // );
 
-      console.log(
-        `🔍 Buscando en secciones: ${ALLOWED_SECTIONS.join(", ")} (${
-          seccionesFiltradas.length
-        } secciones)`
-      );
+      const seccionesFiltradas = data.secciones;
 
       // Buscar secciones con disponibilidad
       const disponibles = seccionesFiltradas.filter((s) => s.hayDisponibilidad);
