@@ -63,7 +63,8 @@ export async function validate(initializeFirst = false) {
       // 2. Ir a Queue-it inicial
       console.log("2. Accediendo a Queue-it...");
       const queueItUrl =
-        "https://bocajuniors.queue-it.net/?c=bocajuniors&e=e20251123&ver=v3-javascript-3.7.10&cver=261&man=Proteccion+Boca+Socios&t=https%3A%2F%2Fbocasocios-gw.bocajuniors.com.ar%2Fqueueit%2Fredirect";
+        "https://bocajuniors.queue-it.net/?c=bocajuniors&e=e20251123adh&ver=v3-javascript-3.7.10&cver=262&man=Proteccion+Boca+Socios&t=https%3A%2F%2Fbocasocios-gw.bocajuniors.com.ar%2Fqueueit%2Fredirect";
+      console.log("Queue it url", queueItUrl);
       const queueResponse = await client.get(queueItUrl, {
         headers: {
           ...headers,
@@ -76,9 +77,9 @@ export async function validate(initializeFirst = false) {
       // 3. Seguir el redirect (302) con el queueittoken
       if (queueResponse.status === 302 && queueResponse.headers.location) {
         console.log("3. Siguiendo redirect con queueittoken...");
-        const redirectUrl = queueResponse.headers.location;
+        const redirectUrl = "https://bocajuniors.queue-it.net" + queueResponse.headers.location;
+        console.log("redirect 2 to");
         console.log(redirectUrl);
-        console.log("redirect 2");
         const redirectResponse = await client.get(redirectUrl, {
           headers: {
             ...headers,
@@ -93,8 +94,8 @@ export async function validate(initializeFirst = false) {
         );
 
         const redirectUrl2 = redirectResponse.headers.location;
+        console.log("redirect 3 to");
         console.log(redirectUrl2);
-        console.log("redirect 3");
         const redirectResponse2 = await client.get(redirectUrl2, {
           headers: {
             ...headers,

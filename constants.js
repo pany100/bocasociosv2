@@ -2,7 +2,7 @@ const LOGIN_URL = "https://bocasocios-gw.bocajuniors.com.ar/auth/login/baas";
 const QUEUEIT_URL = "https://bocasocios-gw.bocajuniors.com.ar/queueit/validate";
 const IPV4_CHECK_URL = "https://bocasocios.bocajuniors.com.ar/api/ipv4";
 const AVAILABILITY_URL =
-  "https://bocasocios-gw.bocajuniors.com.ar/event/811/seat/section/availability";
+  "https://bocasocios-gw.bocajuniors.com.ar/event/812/seat/section/availability";
 
 // Secciones permitidas para buscar disponibilidad
 const ALLOWED_SECTIONS = ["I", "J", "F", "G", "H", "K"];
