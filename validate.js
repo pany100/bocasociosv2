@@ -77,8 +77,7 @@ export async function validate(initializeFirst = false) {
       // 3. Seguir el redirect (302) con el queueittoken
       if (queueResponse.status === 302 && queueResponse.headers.location) {
         console.log("3. Siguiendo redirect con queueittoken...");
-        const redirectUrl =
-          "https://bocajuniors.queue-it.net" + queueResponse.headers.location;
+        const redirectUrl = queueResponse.headers.location;
         console.log("redirect 2 to");
         console.log(redirectUrl);
         const redirectResponse = await client.get(redirectUrl, {
